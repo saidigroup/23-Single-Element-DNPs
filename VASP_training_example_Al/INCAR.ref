@@ -1,0 +1,45 @@
+# Saidi Group University of Pittsburgh INCAR file for generating VASP training data at variable temperatures 2020.
+PREC=A
+ENCUT=400
+ISYM=0
+ALGO=fast
+EDIFF=1E-8
+LREAL=F
+NPAR=8
+KPAR=16
+NELM=200
+NELMIN=4
+
+ISTART=0
+ICHARG=0
+ISIF=2
+ISMEAR=1
+SIGMA=0.15
+
+MAXMIX=50
+
+IBRION=0
+NBLOCK=1
+KBLOCK=10
+SMASS=-1
+POTIM=2
+TEBEG=XXX  # Set initial temperature for NVT
+TEEND=XXX  # Set final temperature for NVT	
+NSW=20     # Adjust to change the number of structures
+
+#opt
+# ISIF =0 ! relax ions only do not calculated stress tensor 
+# ISIF =3 ! relax ions and vol
+# potim = 0.1 ! relax ions and volume as needed   
+# NSW = 1000 
+# IBRION = 2 !use CG  
+
+
+
+LWAVE=F
+LCHARG=T
+PSTRESS=0
+
+KSPACING=0.24
+KGAMMA=F
+#ispin=2 
