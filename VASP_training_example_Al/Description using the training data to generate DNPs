@@ -1,0 +1,11 @@
+The file INCAR.ref is a general VASP INCAR file that we utilized to generate the training data from the parent POSCAR structures using NVT.  The temperature begin and end need to be modified for the specific values desired for each element (e.g. 0.25 Tm and Tm)
+
+*Tm is the elemental metling temperature
+
+The input.json file is an example the deepMD-kit fitting parameters used for every iteration and every element.  
+
+For each randomly seeded fitting of the training data we modified  "training": { "seed": 9999999,   with discinct values. 
+
+Additionally the paths element specific training data ("training_data": { "systems": [ XXXXXXXX ], must be replaced. These training are found in the Training_Data folder.
+
+As well as element ID "type_map" [ "Al" ] with the apropiate elemental symbol (e.g., Al, Kr, Pb, etc).
