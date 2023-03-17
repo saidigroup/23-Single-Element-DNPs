@@ -1,4 +1,4 @@
-# 23DNPs_and_me
+# 23 DNPs across the Peroidic table
 DFT datasets for training machine learning atomistic potentials, final verision of all DNPs, LAMMPS/VASP validation calculation scripts and structure files.
 
 We trained deep neural network potentials (DNPs) using the [deepMD-kit]( https://github.com/deepmodeling/deepmd-kit/releases/tag/v2.1.2 ) for 23 elements accross the periodic table.
