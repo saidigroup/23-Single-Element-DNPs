@@ -1,0 +1,52 @@
+# Find minimum energy bcc configuration, Mark Tschopp, 2010, Modified by C.M. Andolina 2019 for DNP Validation, Saidi Group, University of Pittsburgh
+# Mod for ML by CMA 2019
+
+# ---------- Initialize Simulation --------------------- 
+clear 
+units metal 
+dimension 3 
+boundary p p p 
+atom_style atomic 
+atom_modify map array
+
+# ---------- Create Atoms --------------------- 
+read_data in.lmp
+
+# ---------- Define Interatomic Potential --------------------- 
+pair_style deepmd /zfs1/walsaidi/alsaidi_cma94_paw95/walsaidi_sub/Ele_systems/metals/Al/Al-1-x/Al-1-0.pb  # Path to DNP
+pair_coeff * *
+
+# Neighbor list
+neighbor	3.0 bin
+neigh_modify	every 1 delay 0 check yes
+# ---------- Define Settings --------------------- 
+compute eng all pe/atom 
+compute eatoms all reduce sum c_eng 
+
+# ---------- Run Minimization --------------------- 
+reset_timestep 0 
+fix 1 all box/relax iso 0.000 vmax 0.001   # Comment out this line for simulations you don't wish the cell to relax.
+thermo 10 
+thermo_style custom step pe lx ly lz press pxx pyy pzz c_eatoms 
+min_style cg 
+minimize 1e-25 1e-25 10000 100000 
+
+variable natoms equal "count(all)" 
+variable teng equal "c_eatoms"
+variable length equal "lx"
+variable width equal "ly"
+variable height equal "lz"
+variable ecoh equal "v_teng/v_natoms"
+variable volume equal "lx*ly*lz"
+
+print "Total energy (eV) = ${teng};"
+print "Number of atoms = ${natoms};"
+print "Lattice constant (Angstoms) = ${length};"
+print "Lattice constant (Angstoms) = ${width};"
+print "Lattice constant (Angstoms) = ${height};"
+print "Cohesive energy (eV) = ${ecoh};"
+print "Volume (Angstoms) = ${volume};"
+
+print "All done!" 
+write_data fin.lmp
+write_data ./Elastic/tin.lmp  # This generates the input file "tin.lmp" for elastic calucations

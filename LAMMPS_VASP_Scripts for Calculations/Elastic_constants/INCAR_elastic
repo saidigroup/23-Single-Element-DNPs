@@ -1,0 +1,34 @@
+# General Parameters for Calculating Elastic Constants using VASP for DNP validation
+PREC=A
+ENCUT=520  # Test 400 to 720 to determine convergence MPDB uses 720 for all calucations
+ISYM=0
+ALGO=fast
+EDIFF=1E-8
+##EDIFFG=-1E-7
+LREAL=F
+NELM=60
+NELMIN=4
+#SYMPREC=1E-8
+
+ISTART=0
+ICHARG=1
+ISIF=3
+ISMEAR=0
+SIGMA=0.05 # 0.15 ORG
+
+IBRION=6
+POTIM=0.02
+#TEBEG=750
+#TEEND=750
+NSW=100
+
+NFREE=2
+#LORBIT=11
+#ISPIN=2
+#MAGMOM=4*0.6
+LWAVE=F
+LCHARG=F
+PSTRESS=0
+
+KSPACING=0.24
+KGAMMA=F

@@ -1,0 +1,43 @@
+# NOTE: This script can be modified for different atomic structures, units, etc. See in.elastic for more info.  Modified by C.M. Andolina 2019 for DNP Validation, Saidi Group, University of Pittsburgh
+
+# Define the finite deformation size. Try several values of this
+# variable to verify that results do not depend on it.  Test "up" values from 0.01 to 0.0001, 0.01 is usually a good place to start. 
+variable up equal 1.0e-3
+ 
+# Define the amount of random jiggle for atoms
+# This prevents atoms from staying on saddle points
+variable atomjiggle equal 1.0e-5
+
+# Uncomment one of these blocks, depending on what units
+# you are using in LAMMPS and for output
+
+# metal units, elastic constants in eV/A^3
+#units		metal
+#variable cfac equal 6.2414e-7
+#variable cunits string eV/A^3
+
+# metal units, elastic constants in GPa
+units		metal
+variable cfac equal 1.0e-4
+variable cunits string GPa
+
+# real units, elastic constants in GPa
+#units		real
+#variable cfac equal 1.01325e-4
+#variable cunits string GPa
+
+# Define minimization parameters minimizing supercell if needed
+variable etol equal 0  # originally at 0.0
+variable ftol equal 1.0e-8
+variable maxiter equal 100000  # set to 0 if minimization is not needed
+variable maxeval equal 10000000
+variable dmax equal 1.0e-2
+
+#box tilt large
+read_data tin.lmp
+replicate 2 2 2
+change_box all triclinic remap
+
+# Need to set mass to something, just to satisfy LAMMPS, but with DNP this should be okay without using the mass
+mass 1 1.0e-20
+

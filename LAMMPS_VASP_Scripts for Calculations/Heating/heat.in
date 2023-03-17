@@ -1,0 +1,57 @@
+# Testing the Thermal Stability of the DNP from 0 to the Tm.  CMAndolina 2020, Saidi Group, University of Pittsburgh
+
+#-- Initialize Simulation ---------------------
+clear
+units metal 
+dimension 3
+boundary p p p
+atom_style atomic
+variable R equal 0.001 #R is the Heating ramp rate timestep target in K/ps 
+newton on # can turn of when using GPU 
+# ---------- Create Atomistic Structure ---------------------
+read_data fin.lmp
+
+# ---------- Define Interatomic Potential ---------------------
+pair_style deepmd Al.pb  # used the compressed DNP for MD it is much faster!
+pair_coeff * *
+
+#---Melt---
+variable x equal 0
+variable T equal 1100  # <==insert the melting temperature here
+variable P equal 0
+timestep 0.001 # timestep in picoseconds
+thermo 10000 # reports values every N steps 
+neighbor 3.0 bin  # Not sure if I need to switch back to 2.0 or 2.5; 2.0 is fine for melts 
+neigh_modify every 10 delay 0 check yes
+
+# Define varibles and values to compute
+compute pe3 all pe/atom
+compute ke4 all ke/atom
+
+
+# ---------- Describe computed properties ------------
+compute msdall all msd
+compute T1 all temp/com
+compute P1 all pressure T1
+compute_modify T1 dynamic/dof yes
+compute eng1 all reduce ave c_pe3
+fix 1 all ave/time 100 10 10000 c_T1
+fix 2 all ave/time 100 10 10000 c_eng1
+
+thermo_style custom step press vol temp pe etotal c_P1 c_T1 c_eng1  c_msdall[4] f_12 f_13
+velocity all create $x 825577 mom yes rot yes dist gaussian
+
+#--------- Melt or Freeze -------------
+fix 3 all langevin 0 $T $(100*dt) 112233 zero yes
+fix 4 all nve
+dump myDump all atom 100 dump.lammpstrj
+
+#--------- Compute RDF ---------------
+#compute rdfall all rdf 100 1 1
+#fix 5 all ave/time 100 10 10000 c_rdfall[*] file lammps.rdf mode vector
+
+variable q equal $(1000*dt)
+variable steps equal ($T*$q/$R)
+run ${steps}
+write_data done.lmp
+

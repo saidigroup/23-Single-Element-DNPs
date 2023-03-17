@@ -1,0 +1,35 @@
+LAMMPS (23 Jun 2022 - Update 1)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+Loaded 1 plugins from /ihome/walsaidi/cma94/miniconda3/envs/deepmd-gpu/lib/deepmd_lmp
+Loaded 0 plugins from 
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+Loaded 1 plugins from /ihome/walsaidi/cma94/miniconda3/envs/deepmd-gpu/lib/deepmd_lmp
+Loaded 0 plugins from 
+Reading data file ...
+  triclinic box = (0.0010040727 0.0010040727 0.0010040727) to (4.041415 4.041415 4.041415) with tilt (-1.3277401e-08 7.9260606e-10 -4.3038609e-09)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  4 atoms
+  reading velocities ...
+  4 velocities
+  read_data CPU = 0.001 seconds
+Summary of lammps deepmd module ...
+  >>> Info of deepmd-kit:
+  installed to:       /ihome/walsaidi/cma94/miniconda3/envs/deepmd-gpu
+  source:             v2.1.4
+  source branch:       HEAD
+  source commit:      c3933924
+  source commit at:   2022-08-19 12:09:24 +0800
+  surpport model ver.:1.1 
+  build float prec:   double
+  build variant:      cuda
+  build with tf inc:  /ihome/walsaidi/cma94/miniconda3/envs/deepmd-gpu/include;/ihome/walsaidi/cma94/miniconda3/envs/deepmd-gpu/include
+  build with tf lib:  /ihome/walsaidi/cma94/miniconda3/envs/deepmd-gpu/lib/libtensorflow_cc.so;/ihome/walsaidi/cma94/miniconda3/envs/deepmd-gpu/lib/libtensorflow_framework.so
+  set tf intra_op_parallelism_threads: 0
+  set tf inter_op_parallelism_threads: 0
+  >>> Info of lammps module:
+  use deepmd-kit at:  /ihome/walsaidi/cma94/miniconda3/envs/deepmd-gpuNOT_FOUND: Al.pb; No such file or directory
+ERROR: DeePMD-kit Error: TensorFlow Error: NOT_FOUND: Al.pb; No such file or directory (/home/conda/feedstock_root/build_artifacts/libdeepmd_1660884873849/work/source/lmp/pair_deepmd.cpp:840)
+Last command: pair_style deepmd Al.pb

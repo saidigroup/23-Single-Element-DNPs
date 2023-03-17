@@ -1,0 +1,29 @@
+# General INCAR for generation of VASP reference DFT values.  C.M. Andolina 2020, Saidi Group, University of Pittsburgh 
+PREC=A
+ENCUT=400
+ISYM=0
+ALGO=fast
+EDIFF=1E-8
+LREAL=F
+NPAR=8
+KPAR=16
+NELM=60
+NELMIN=4
+
+ISTART=0
+ICHARG=1
+ISMEAR=1
+SIGMA=0.15
+
+#opt
+ISIF=3 #change to "2" for Isolated atoms or to check simulation cell relaxation for vac or inter calculations.
+POTIM=0.1 
+NSW=200 
+IBRION=2  
+
+LWAVE=F
+LCHARG=F
+PSTRESS=0
+
+KSPACING=0.24
+KGAMMA=F
