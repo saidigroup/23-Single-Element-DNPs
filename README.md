@@ -11,4 +11,4 @@ All of the structures used for validation of these DNPs can be found in the "[Va
 
 We utilized the [LAVA](https://github.com/lanl/LAVA) code for calculating the DNP surface energys for these elements using the DNPs and LAMMPs do to the code's ease of use for this application (there are many other interesting tools in this package as well for LAMMPS and VASP validations of atomistic potentials).
 
-The data used to produce figures are located in the "[Figures]( https://github.com/saidigroup/23DNPs_and_me/tree/main/Figures)" directories along with the python scripts to generate these plots.  
+The data used to produce figures are located in the "[Figures](https://github.com/saidigroup/23DNPs_and_me/tree/main/Figures)" directories along with the python scripts to generate these plots.  
