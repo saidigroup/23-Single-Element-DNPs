@@ -1,4 +1,4 @@
-Description of the Training Datasets and files
+# Description of the Training Datasets and files
 
 INCAR.ref:
 The file INCAR.ref is a general VASP INCAR file that we utilized to generate the training data from the parent POSCAR structures using NVT. 
